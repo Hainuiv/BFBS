@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BFBS Forces News</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand-wrap">
+      <img src="images/bfbs-logo.png" alt="BFBS Forces News" class="logo">
+    </div>
+    <nav class="nav-bar">
+      <a href="index.html">HOME</a>
+      <a href="index.html#news">NEWS</a>
+      <a href="index.html#conflict">CONFLICT</a>
+      <a href="index.html#development">DEVELOPMENT NEWS</a>
+      <a href="index.html#watch">WATCH</a>
+      <a href="index.html#archive">ARCHIVE</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <article id="article" class="article-page"></article>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <strong>BFBS FORCES NEWS</strong>
+      <span>British Forces Broadcasting Service</span>
+    </div>
+  </footer>
+
+  <script src="articles.js"></script>
+  <script>
+    const id = new URLSearchParams(location.search).get("id");
+    const article = articles.find(a => a.id === id) || articles[0];
+    document.title = article.title + " | BFBS Forces News";
+    document.getElementById("article").innerHTML = `
+      <span class="kicker">${article.category} · ${article.date}</span>
+      <h1>${article.title}</h1>
+      <img src="${article.image}" alt="${article.title}">
+      <div class="article-body">
+        <p><strong>${article.description}</strong></p>
+        <p>${article.body}</p>
+      </div>
+    `;
+  </script>
+</body>
+</html>
